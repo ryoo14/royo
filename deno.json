@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "dev": "deno run -A --unstable-ffi --watch main.ts",
+    "update": "deno run --allow-env --allow-read --allow-write --allow-run=git,deno --allow-net=deno.land,jsr.io,registry.npmjs.org jsr:@molt/cli ./deno.json",
+    "update:commit": "deno task -q update --commit --pre-commit=fmt,lint --prefix='build:'"
+  },
+  "imports": { 
+    "@db/sqlite": "jsr:@db/sqlite@^0.11.1",
+    "hono": "jsr:@hono/hono@4.5.3"
+  },
+  "fmt": {
+    "exclude": ["README.md", "deno.json"],
+    "useTabs": false,
+    "lineWidth": 160,
+    "semiColons": false
+  }
+}
