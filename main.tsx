@@ -1,6 +1,7 @@
 import { Hono } from "hono"
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
+import { Main } from "./components.tsx"
 
 const app = new Hono()
 
@@ -9,7 +10,7 @@ app.notFound((c) => {
 })
 
 app.get("/", (c) => {
-  return c.html("royo!")
+  return c.html(<Main />)
 })
 
 app.get("/todos", (c) => {
