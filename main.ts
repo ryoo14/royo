@@ -42,9 +42,15 @@ app.get("/todos/:todoId", (c) => {
 app.post("/todos", async (c) => {
   try {
     const requestBody = await c.req.json()
+    const category = requestBody.category
     const content = requestBody.content
-    const deadline = new Date(requestBody.deadline)
-    const todo = db.createTodo(content, deadline)
+    const deadline = requestBody.deadline
+
+    if (category == null || content == null  || deadline == null) {
+      return c.text("Bad Request", 400)
+    }
+
+    const todo = db.createTodo(category, content, new Date(deadline))
 
     return c.json(todo)
   } catch (_e) {

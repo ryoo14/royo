@@ -2,13 +2,14 @@ import { Database } from "@db/sqlite"
 import type { Todo } from "./types.ts"
 
 const royoDB = Deno.env.get("ROYO_DB") as string
+const royoTable = Deno.env.get("ROYO_TABLE") as string
 
 const db = new Database(royoDB)
-const selectAllStatement = db.prepare("SELECT * FROM todos")
-const selectOneStatement = db.prepare("SELECT * FROM todos WHERE id = ?")
-const insertOneStatement = db.prepare("INSERT INTO todos (content, deadline) values (?, ?)")
-const updateOneStatement = db.prepare("UPDATE todos SET completed = ? where id = ?")
-const deleteOneStatement = db.prepare("DELETE FROM todos where id = ?")
+const selectAllStatement = db.prepare(`SELECT * FROM ${royoTable}`)
+const selectOneStatement = db.prepare(`SELECT * FROM ${royoTable} WHERE id = ?`)
+const insertOneStatement = db.prepare(`INSERT INTO ${royoTable} (category, content, deadline) values (?, ?, ?)`)
+const updateOneStatement = db.prepare(`UPDATE ${royoTable} SET completed = ? where id = ?`)
+const deleteOneStatement = db.prepare(`DELETE FROM ${royoTable} where id = ?`)
 
 function selectAllTodos(): Todo[] {
   try {
@@ -32,9 +33,9 @@ function selectTodo(todoId: number): Todo | undefined {
   }
 }
 
-function createTodo(content: string, deadline: Date): Todo {
+function createTodo(category: string, content: string, deadline: Date): Todo {
   try {
-    const insertResult: number = insertOneStatement.run(content, deadline)
+    const insertResult: number = insertOneStatement.run(category, content, deadline)
 
     if (insertResult !== 1) {
       throw new Error("Failed to insert for some reason.")
