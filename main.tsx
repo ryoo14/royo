@@ -80,7 +80,7 @@ app.patch("/todos/:todoId/completed", async (c) => {
   }
 })
 
-app.delete("/todos/:todoId", async (c) => {
+app.delete("/todos/:todoId", (c) => {
   try {
     const todoId: number = Number(c.req.param("todoId"))
 
@@ -88,7 +88,7 @@ app.delete("/todos/:todoId", async (c) => {
       return c.text("bad request", 400)
     }
 
-    const deletedTodo = await db.deleteTodo(todoId)
+    const deletedTodo = db.deleteTodo(todoId)
     if (deletedTodo === undefined) {
       return c.notFound()
     }
