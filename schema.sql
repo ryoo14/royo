@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS "todos" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "category" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "deadline" DATETIME NOT NULL,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "completed" BOOLEAN NOT NULL DEFAULT false
+);
