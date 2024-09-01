@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
-import { Main } from "./components.tsx"
+import { AddToDo, TodoItem, renderer } from "./components.tsx"
 
 const app = new Hono()
 
@@ -9,16 +9,43 @@ app.notFound((c) => {
   return c.text("Not Found", 404)
 })
 
-app.get("/", (c) => {
-  return c.html(<Main />)
-})
+app.get("*", renderer)
 
-app.get("/todos", (c) => {
+app.get("/", (c) => {
   try {
     const todos: Todo[] = db.selectAllTodos()
 
-    return c.json(todos)
+    return c.render(
+      <div>
+        <AddToDo />
+        {todos.map((todo) => {
+          return <TodoItem todo={todo} />
+        })}
+        <div id="royo" />
+      </div>
+    )
   } catch (_e) {
+    return c.text("Internal Server Error", 500)
+  }
+})
+
+app.post("/todos", async (c) => {
+  try {
+    const formData = await c.req.formData()
+    const category = formData.get("category") as string
+    const content = formData.get("content") as string
+    const deadline = formData.get("deadline") as string
+    //const { category, content, deadline } = c.req.valid("form")
+
+    if (category == null || content == null  || deadline == null) {
+      return c.text("Bad Request", 400)
+    }
+
+    const todo = db.createTodo(category, content, new Date(deadline))
+
+    return c.html(<TodoItem todo={todo} />)
+  } catch (e) {
+    console.log(e)
     return c.text("Internal Server Error", 500)
   }
 })
@@ -33,25 +60,6 @@ app.get("/todos/:todoId", (c) => {
     if (todo === undefined) {
       return c.notFound()
     }
-
-    return c.json(todo)
-  } catch (_e) {
-    return c.text("Internal Server Error", 500)
-  }
-})
-
-app.post("/todos", async (c) => {
-  try {
-    const requestBody = await c.req.json()
-    const category = requestBody.category
-    const content = requestBody.content
-    const deadline = requestBody.deadline
-
-    if (category == null || content == null  || deadline == null) {
-      return c.text("Bad Request", 400)
-    }
-
-    const todo = db.createTodo(category, content, new Date(deadline))
 
     return c.json(todo)
   } catch (_e) {
