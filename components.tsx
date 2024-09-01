@@ -33,13 +33,13 @@ export const AddToDo = () => (
 )
 
 export const TodoItem = ({ todo }: { todo: Todo }) => (
-  <div hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML">
+  <div id={`royo-${todo.id}`}>
     <div>{todo.id}</div>
     <div>{todo.category}</div>
     <div>{todo.content}</div>
     <div>{todo.deadline}</div>
-    <div>{todo.completed}</div>
-    <button>
+    <div hx-patch={`/todos/${todo.id}/completed`}>{todo.completed}</div>
+    <button hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML" hx-target={`#royo-${todo.id}`}>
       Delete
     </button>
   </div>

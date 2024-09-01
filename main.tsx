@@ -67,22 +67,20 @@ app.get("/todos/:todoId", (c) => {
   }
 })
 
-app.patch("/todos/:todoId/completed", async (c) => {
+app.patch("/todos/:todoId/completed", (c) => {
   try {
     const todoId = Number(c.req.param("todoId"))
-    const requestBody = await c.req.json()
-    const completedFlag: boolean = requestBody.completed
 
-    if (Number.isNaN(todoId) || typeof completedFlag !== "boolean") {
+    if (Number.isNaN(todoId)) {
       return c.text("Bad Request", 400)
     }
 
-    const updatedTodo = db.toggleTodoCompletion(todoId, completedFlag)
+    const updatedTodo = db.toggleTodoCompletion(todoId)
     if (updatedTodo === undefined) {
       return c.notFound()
     }
 
-    return c.json(updatedTodo)
+    return c.body(updatedTodo.completed ? "1" : "0", 200)
   } catch (_e) {
     return c.text("Internal Server Error", 500)
   }

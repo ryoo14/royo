@@ -51,7 +51,7 @@ function createTodo(category: string, content: string, deadline: Date): Todo {
   }
 }
 
-function toggleTodoCompletion(todoId: number, completeFlag: boolean): Todo | undefined {
+function toggleTodoCompletion(todoId: number): Todo | undefined {
   try {
     const todo: Todo | undefined = selectOneStatement.get(todoId)
 
@@ -59,7 +59,8 @@ function toggleTodoCompletion(todoId: number, completeFlag: boolean): Todo | und
       return todo
     }
 
-    const updateResult = updateOneStatement.run(completeFlag, todoId)
+    const completeFlag = todo.completed
+    const updateResult = updateOneStatement.run(!completeFlag, todoId)
 
     if (updateResult !== 1) {
       throw new Error("Failed to update for some reason.")
