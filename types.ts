@@ -1,6 +1,6 @@
 export type Todo = {
   id: number
-  type: string
+  category: string
   content: string
   deadline: Date
   createdAt: Date
