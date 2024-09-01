@@ -20,7 +20,7 @@ export const renderer = jsxRenderer(({ children }) => {
 })
 
 export const AddToDo = () => (
-  <form hx-post="/todos" hx-target="#royo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me">
+  <form hx-post="/todos" hx-target="#todo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me">
     <div>
       <input name="category" type="text" />
       <input name="content" type="text" />
@@ -33,13 +33,13 @@ export const AddToDo = () => (
 )
 
 export const TodoItem = ({ todo }: { todo: Todo }) => (
-  <div id={`royo-${todo.id}`}>
+  <div id={`todo-${todo.id}`}>
     <div>{todo.id}</div>
     <div>{todo.category}</div>
     <div>{todo.content}</div>
     <div>{todo.deadline}</div>
-    <div hx-patch={`/todos/${todo.id}/completed`}>{todo.completed}</div>
-    <button hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML" hx-target={`#royo-${todo.id}`}>
+    <input type="checkbox" hx-patch={`/todos/${todo.id}/completed`} hx-trigger="change" checked={todo.completed ? true : false} />
+    <button hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML" hx-target={`#todo-${todo.id}`}>
       Delete
     </button>
   </div>

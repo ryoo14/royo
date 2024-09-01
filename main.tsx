@@ -21,7 +21,7 @@ app.get("/", (c) => {
         {todos.map((todo) => {
           return <TodoItem todo={todo} />
         })}
-        <div id="royo" />
+        <div id="todo" />
       </div>
     )
   } catch (_e) {
