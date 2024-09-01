@@ -101,7 +101,7 @@ app.delete("/todos/:todoId", (c) => {
       return c.notFound()
     }
     
-    return c.json(deletedTodo)
+    return c.body(null)
   } catch (_e) {
     return c.text("Internal Server Error", 500)
   }

@@ -33,11 +33,14 @@ export const AddToDo = () => (
 )
 
 export const TodoItem = ({ todo }: { todo: Todo }) => (
-  <div>
+  <div hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML">
     <div>{todo.id}</div>
     <div>{todo.category}</div>
     <div>{todo.content}</div>
     <div>{todo.deadline}</div>
     <div>{todo.completed}</div>
+    <button>
+      Delete
+    </button>
   </div>
 )
