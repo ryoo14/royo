@@ -16,10 +16,10 @@ app.get("/", (c) => {
     const todos: Todo[] = db.selectAllTodos()
 
     return c.render(
-      <div>
+      <div class="flex flex-col justify-center w-2/3">
         <AddToDo />
-        {todos.map((todo) => {
-          return <TodoItem todo={todo} />
+        {todos.map((todo, index) => {
+          return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "" : "bg-gray-100"} />
         })}
         <div id="todo" />
       </div>
@@ -35,7 +35,6 @@ app.post("/todos", async (c) => {
     const category = formData.get("category") as string
     const content = formData.get("content") as string
     const deadline = formData.get("deadline") as string
-    //const { category, content, deadline } = c.req.valid("form")
 
     if (category == null || content == null  || deadline == null) {
       return c.text("Bad Request", 400)

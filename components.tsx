@@ -9,9 +9,18 @@ export const renderer = jsxRenderer(({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+          body {
+            width: 100%;
+            height: 1080px;
+            display: flex;
+            justify-content: center;
+          }
+        </style>
       </head>
       <body>
-        <div id="container">
+        <div id="container" class="flex justify-center items-center w-full h-full">
           ${children}
         </div>
       </body>
@@ -20,25 +29,23 @@ export const renderer = jsxRenderer(({ children }) => {
 })
 
 export const AddToDo = () => (
-  <form hx-post="/todos" hx-target="#todo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me">
-    <div>
-      <input name="category" type="text" />
-      <input name="content" type="text" />
-      <input name="deadline" type="text" />
-    </div>
-    <button type="submit">
+  <form hx-post="/todos" hx-target="#todo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me" class="flex flex-row justify-around w-full mb-10">
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="category" type="text" />
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" />
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" />
+    <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-1/5" type="submit">
       Submit
     </button>
   </form>
 )
 
-export const TodoItem = ({ todo }: { todo: Todo }) => (
-  <div id={`todo-${todo.id}`}>
-    <div>{todo.id}</div>
-    <div>{todo.category}</div>
-    <div>{todo.content}</div>
-    <div>{todo.deadline}</div>
-    <input type="checkbox" hx-patch={`/todos/${todo.id}/completed`} hx-trigger="change" checked={todo.completed ? true : false} />
+export const TodoItem = ({ todo, bgColor }: { todo: Todo, bgColor: string }) => (
+  <div id={`todo-${todo.id}`} class={`flex flex-row justify-around items-center w-full ${bgColor} p-3`}>
+    <div class="w-1/6">{todo.id}</div>
+    <div class="w-1/6">{todo.category}</div>
+    <div class="w-1/6">{todo.content}</div>
+    <div class="w-1/6">{todo.deadline}</div>
+    <input type="checkbox" hx-patch={`/todos/${todo.id}/completed`} hx-trigger="change" checked={todo.completed ? true : false} class="h-6" />
     <button hx-delete={`/todos/${todo.id}`} hx-swap="outerHTML" hx-target={`#todo-${todo.id}`}>
       Delete
     </button>
