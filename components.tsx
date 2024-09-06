@@ -38,9 +38,14 @@ export const renderer = jsxRenderer(({ children }) => {
 
 export const AddToDo = () => (
   <form hx-post="/todos" hx-target="#todo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me" class="flex flex-row justify-around w-full mb-10">
-    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="category" type="text" />
-    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" />
-    <input id="deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" />
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="category" type="text" placeholder="category" list="dataList" />
+    <datalist id="dataList">
+      <option value="work" />
+      <option value="hobby" />
+      <option value="family" />
+    </datalist>
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" placeholder="content" />
+    <input id="deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" placeholder="deadline" />
     <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-1/5" type="submit">
       Submit
     </button>
