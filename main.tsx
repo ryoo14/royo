@@ -19,7 +19,7 @@ app.get("/", (c) => {
       <div class="flex flex-col justify-center w-2/3">
         <AddToDo />
         {todos.map((todo, index) => {
-          return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "" : "bg-gray-100"} />
+          return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
         })}
         <div id="todo" />
       </div>
@@ -42,7 +42,7 @@ app.post("/todos", async (c) => {
 
     const todo = db.createTodo(category, content, new Date(deadline))
 
-    return c.html(<TodoItem todo={todo} />)
+    return c.html(<TodoItem todo={todo} bgColor="bg-orange-200" />)
   } catch (e) {
     console.log(e)
     return c.text("Internal Server Error", 500)
