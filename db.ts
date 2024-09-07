@@ -33,7 +33,7 @@ function selectTodo(todoId: number): Todo | undefined {
   }
 }
 
-function createTodo(category: string, content: string, deadline: Date): Todo {
+function createTodo(category: string, content: string, deadline: string): Todo {
   try {
     const insertResult: number = insertOneStatement.run(category, content, deadline)
 

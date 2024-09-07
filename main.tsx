@@ -40,11 +40,11 @@ app.post("/todos", async (c) => {
       return c.text("Bad Request", 400)
     }
 
-    const todo = db.createTodo(category, content, new Date(deadline))
+    const deadlineDate = new Date(deadline)
+    const todo = db.createTodo(category, content, deadlineDate.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }))
 
     return c.html(<TodoItem todo={todo} bgColor="bg-orange-200" />)
-  } catch (e) {
-    console.log(e)
+  } catch (_e) {
     return c.text("Internal Server Error", 500)
   }
 })
