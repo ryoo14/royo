@@ -20,7 +20,7 @@ export const renderer = jsxRenderer(({ children }) => {
         </style>
       </head>
       <body>
-        <div id="container" class="flex justify-center items-center w-full h-full pt-36">
+        <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-36">
           ${children}
         </div>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
