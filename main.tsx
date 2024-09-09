@@ -16,7 +16,7 @@ app.get("/", (c) => {
     const todos: Todo[] = db.selectAllTodos()
 
     return c.render(
-      <div class="flex flex-col justify-center w-2/3">
+      <div class="flex flex-col justify-center w-full lg:w-2/3">
         <AddToDo />
         {todos.map((todo, index) => {
           return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
