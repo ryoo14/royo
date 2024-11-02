@@ -4,7 +4,7 @@
     "specifiers": {
       "jsr:@db/sqlite@^0.12.0": "jsr:@db/sqlite@0.12.0",
       "jsr:@denosaurs/plug@1": "jsr:@denosaurs/plug@1.0.6",
-      "jsr:@hono/hono@4.5.3": "jsr:@hono/hono@4.5.3",
+      "jsr:@hono/hono@4.6.8": "jsr:@hono/hono@4.6.8",
       "jsr:@std/assert@^0.217.0": "jsr:@std/assert@0.217.0",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/encoding@^0.221.0": "jsr:@std/encoding@0.221.0",
@@ -31,8 +31,8 @@
           "jsr:@std/path@^0.221.0"
         ]
       },
-      "@hono/hono@4.5.3": {
-        "integrity": "429923b2b3c6586a1450862328d61a1346fee5841e8ae86c494250475057213c"
+      "@hono/hono@4.6.8": {
+        "integrity": "4c92cb895360d93b7bc637c0c3f26449761b2bb160009c0387a37a1d457850f0"
       },
       "@std/assert@0.217.0": {
         "integrity": "c98e279362ca6982d5285c3b89517b757c1e3477ee9f14eb2fdf80a45aaa9642",
@@ -80,7 +80,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@db/sqlite@^0.12.0",
-      "jsr:@hono/hono@4.5.3"
+      "jsr:@hono/hono@4.6.8"
     ]
   }
 }
