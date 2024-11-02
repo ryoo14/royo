@@ -5,7 +5,7 @@
     "update:commit": "deno task -q update --commit --pre-commit=fmt,lint --prefix='build:'"
   },
   "imports": { 
-    "@db/sqlite": "jsr:@db/sqlite@^0.11.1",
+    "@db/sqlite": "jsr:@db/sqlite@^0.12.0",
     "hono": "jsr:@hono/hono@4.5.3"
   },
   "compilerOptions": {
