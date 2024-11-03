@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
-import { AddToDo, TodoItem, renderer } from "./components.tsx"
+import { AddToDo, renderer, TodoItem } from "./components.tsx"
 
 const app = new Hono()
 
@@ -16,13 +16,13 @@ app.get("/", (c) => {
     const todos: Todo[] = db.selectAllTodos()
 
     return c.render(
-      <div class="flex flex-col justify-center w-full lg:w-2/3">
+      <div class="flex flex-col justify-center w-11/12 lg:w-2/3">
         <AddToDo />
         {todos.map((todo, index) => {
           return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
         })}
         <div id="todo" />
-      </div>
+      </div>,
     )
   } catch (_e) {
     return c.text("Internal Server Error", 500)
@@ -36,7 +36,7 @@ app.post("/todos", async (c) => {
     const content = formData.get("content") as string
     const deadline = formData.get("deadline") as string
 
-    if (category == null || content == null  || deadline == null) {
+    if (category == null || content == null || deadline == null) {
       return c.text("Bad Request", 400)
     }
 
@@ -97,7 +97,7 @@ app.delete("/todos/:todoId", (c) => {
     if (deletedTodo === undefined) {
       return c.notFound()
     }
-    
+
     return c.body(null)
   } catch (_e) {
     return c.text("Internal Server Error", 500)
