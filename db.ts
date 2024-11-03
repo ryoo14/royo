@@ -1,5 +1,6 @@
 import { Database } from "@db/sqlite"
 import type { Todo } from "./types.ts"
+import "@std/dotenv/load"
 
 const royoDB = Deno.env.get("ROYO_DB") as string
 const royoTable = Deno.env.get("ROYO_TABLE") as string
