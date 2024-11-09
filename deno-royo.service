@@ -1,0 +1,13 @@
+[Unit]
+Description=Deno Task Web App
+After=network.target
+
+[Service]
+ExecStart=${HOME}/.deno/bin/deno run serve
+Restart=on-failure
+User=ryoo
+Environment=ROYO_DB=royo.db
+Environment=ROYO_TABLE=todos
+
+[Install]
+WantedBy=multi-user.target
