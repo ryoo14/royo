@@ -1,5 +1,6 @@
 import { html } from "hono/html"
 import { jsxRenderer } from "hono/jsx-renderer"
+import type { FC } from "hono/jsx"
 import type { Todo } from "./types.ts"
 
 export const renderer = jsxRenderer(({ children }) => {
@@ -7,12 +8,16 @@ export const renderer = jsxRenderer(({ children }) => {
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- for calender -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <!-- for font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+        <!-- for htmx -->
         <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <!-- for css -->
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
           body {
@@ -29,6 +34,7 @@ export const renderer = jsxRenderer(({ children }) => {
         <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-36">
           ${children}
         </div>
+        <!-- for calender -->
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script>
           flatpickr("#deadline", {
@@ -40,6 +46,14 @@ export const renderer = jsxRenderer(({ children }) => {
     </html>
   `
 })
+
+export const Todos: FC = (props) => {
+  return (
+    <div class="flex flex-col justify-center w-11/12 lg:w-2/3">
+      {props.children}
+    </div>
+  )
+}
 
 export const AddToDo = () => (
   <form

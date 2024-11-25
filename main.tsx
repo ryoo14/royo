@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
-import { AddToDo, renderer, TodoItem } from "./components.tsx"
+import { AddToDo, renderer, TodoItem, Todos } from "./components.tsx"
 
 const app = new Hono()
 
@@ -16,13 +16,13 @@ app.get("/", (c) => {
     const todos: Todo[] = db.selectAllTodos()
 
     return c.render(
-      <div class="flex flex-col justify-center w-11/12 lg:w-2/3">
+      <Todos>
         <AddToDo />
         {todos.map((todo, index) => {
           return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
         })}
         <div id="todo" />
-      </div>,
+      </Todos>
     )
   } catch (_e) {
     return c.text("Internal Server Error", 500)
