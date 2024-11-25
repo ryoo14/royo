@@ -18,7 +18,7 @@ function selectAllTodos(): Todo[] {
 
     return todos
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error()
   }
 }
@@ -29,7 +29,7 @@ function selectTodo(todoId: number): Todo | undefined {
 
     return todo
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error()
   }
 }
@@ -47,7 +47,7 @@ function createTodo(category: string, content: string, deadline: string): Todo {
 
     return insertColumn
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error()
   }
 }
@@ -69,7 +69,7 @@ function toggleTodoCompletion(todoId: number): Todo | undefined {
 
     return todo
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error()
   }
 }
@@ -90,7 +90,7 @@ function deleteTodo(todoId: number): Todo | undefined {
 
     return todo
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error()
   }
 }
