@@ -8,7 +8,7 @@
   "imports": { 
     "@db/sqlite": "jsr:@db/sqlite@^0.12.0",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
-    "hono": "jsr:@hono/hono@4.6.8"
+    "hono": "jsr:@hono/hono@4.6.11"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
