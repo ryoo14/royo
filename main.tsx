@@ -19,6 +19,7 @@ app.get("/", (c) => {
       <Todos>
         <AddToDo />
         {todos.map((todo, index) => {
+          // 偶数行の背景色を灰色に
           return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
         })}
         <div id="todo" />
@@ -40,8 +41,11 @@ app.post("/todos", async (c) => {
       return c.text("Bad Request", 400)
     }
 
+    // 2024-11-28 12:00 -> 2024-11-28T03:00:00.000Z
     const deadlineDate = new Date(deadline)
-    const todo = db.createTodo(category, content, deadlineDate.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }))
+    // 2024-11-28T03:00:00.000Z -> 2024-11-28 12:00:00
+    const deadlineString = deadlineDate.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
+    const todo = db.createTodo(category, content, deadlineString)
 
     return c.html(<TodoItem todo={todo} bgColor="bg-orange-200" />)
   } catch (_e) {
