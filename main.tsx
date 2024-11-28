@@ -1,9 +1,15 @@
 import { Hono } from "hono"
+import { serveStatic } from 'hono/node-server/serve-static'
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
 import { AddToDo, renderer, TodoItem, Todos } from "./components.tsx"
 
 const app = new Hono()
+
+app.get("/css/*", serveStatic({ root: "./public"}))
+app.get("/js/*", serveStatic({ root: "./public"}))
+app.get("/fonts/*", serveStatic({ root: "./public"}))
+
 
 app.notFound((c) => {
   return c.text("Not Found", 404)

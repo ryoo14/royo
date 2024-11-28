@@ -11,7 +11,8 @@
     "jsr:@std/fmt@0.221": "0.221.0",
     "jsr:@std/fs@0.221": "0.221.0",
     "jsr:@std/path@0.217": "0.217.0",
-    "jsr:@std/path@0.221": "0.221.0"
+    "jsr:@std/path@0.221": "0.221.0",
+    "npm:@hono/node-server@*": "1.13.7_hono@4.6.12"
   },
   "jsr": {
     "@db/sqlite@0.12.0": {
@@ -68,11 +69,23 @@
       ]
     }
   },
+  "npm": {
+    "@hono/node-server@1.13.7_hono@4.6.12": {
+      "integrity": "sha512-kTfUMsoloVKtRA2fLiGSd9qBddmru9KadNyhJCwgKBxTiNkaAJEwkVN9KV/rS4HtmmNRtUh6P+YpmjRMl0d9vQ==",
+      "dependencies": [
+        "hono"
+      ]
+    },
+    "hono@4.6.12": {
+      "integrity": "sha512-eHtf4kSDNw6VVrdbd5IQi16r22m3s7mWPLd7xOMhg1a/Yyb1A0qpUFq8xYMX4FMuDe1nTKeMX5rTx7Nmw+a+Ag=="
+    }
+  },
   "workspace": {
     "dependencies": [
       "jsr:@db/sqlite@0.12",
       "jsr:@hono/hono@4.6.11",
-      "jsr:@std/dotenv@~0.225.2"
+      "jsr:@std/dotenv@~0.225.2",
+      "npm:@hono/node-server@*"
     ]
   }
 }

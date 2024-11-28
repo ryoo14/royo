@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'DotGothic16';
+  font-weight: normal;
+  font-weight: 400;
+  src: url(/fonts/DotGothic16-Regular.ttf), format("truetype");
+}
+
+body {
+  font-family: 'DotGothic16', serif;
+}
