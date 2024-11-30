@@ -17,16 +17,6 @@ export const renderer = jsxRenderer(({ children }) => {
         <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
         <!-- for css -->
         <script src="https://cdn.tailwindcss.com"></script>
-        <style>
-          body {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            font-family: "DotGothic16", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-          }
-        </style>
       </head>
       <body>
         <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-36">
