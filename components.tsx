@@ -43,7 +43,7 @@ export const Todos: FC = (props) => {
   )
 }
 
-export const AddToDo = () => (
+export const AddTodo = () => (
   <form
     hx-post="/todos"
     hx-target="#todo"
@@ -72,6 +72,35 @@ export const AddToDo = () => (
       Submit
     </button>
   </form>
+)
+
+export const TodoHeader = () => (
+  <div class="flex flex-row justify-around items-center flex-wrap w-full p-3">
+    <div class="w-1/12">Id</div>
+    <div class="w-2/12 md:w-1/12 pr-2">Cate</div>
+    <div class="w-4/12 md:w-6/12 pr-2">Content</div>
+    <div class="w-3/12 md:w-2/12 pr-2 flex flex-nowrap">
+      <div class="mr-1">
+        Deadline
+      </div>
+      <div hx-get="/todos/asc"
+        hx-trigger="click"
+        hx-target="#todos"
+        hx-swap="innerHTML"
+        class="">
+        ↓
+      </div>
+      <div hx-get="/todos/desc"
+        hx-trigger="click"
+        hx-target="#todos"
+        hx-swap="innerHTML"
+        class="">
+        ↑
+      </div>
+    </div>
+    <div class="h-6 w-1/12">Flag</div>
+    <div class="w-1/12">Delete</div>
+  </div>
 )
 
 export const TodoItem = ({ todo, bgColor }: { todo: Todo; bgColor: string }) => (

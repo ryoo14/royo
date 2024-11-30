@@ -2,7 +2,7 @@ import { Hono } from "hono"
 import { serveStatic } from 'hono/node-server/serve-static'
 import type { Todo } from "./types.ts"
 import db from "./db.ts"
-import { AddToDo, renderer, TodoItem, Todos } from "./components.tsx"
+import { AddTodo, renderer, TodoHeader, TodoItem, Todos } from "./components.tsx"
 
 const app = new Hono()
 
@@ -23,15 +23,45 @@ app.get("/", (c) => {
 
     return c.render(
       <Todos>
-        <AddToDo />
+        <AddTodo />
+        <TodoHeader />
+        <div id="todos">
+          {todos.map((todo, index) => {
+            // 偶数行の背景色を灰色に
+            return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
+          })}
+          <div id="todo" />
+        </div>
+      </Todos>
+    )
+  } catch (_e) {
+    return c.text("Internal Server Error", 500)
+  }
+})
+
+app.get("/todos/:sortParam", (c) => {
+  try {
+    const matchPath = c.req.param("sortParam")
+    const todos: Todo[] = db.selectAllTodos()
+    if (matchPath === "asc") {
+      todos.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
+    } else if (matchPath === "desc") {
+      todos.sort((a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime())
+    } else {
+      return c.notFound()
+    }
+
+    return c.html(
+      <>
         {todos.map((todo, index) => {
           // 偶数行の背景色を灰色に
           return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
         })}
         <div id="todo" />
-      </Todos>
+      </>
     )
   } catch (_e) {
+    console.error(_e);
     return c.text("Internal Server Error", 500)
   }
 })
