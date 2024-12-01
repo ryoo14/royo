@@ -9,7 +9,7 @@ export const renderer = jsxRenderer(({ children }) => {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- for calender -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link href="/css/flatpickr.min.css" rel="stylesheet">
         <!-- for font -->
         <link href="/css/main.css" rel="stylesheet">
         <!-- for htmx -->
@@ -23,7 +23,7 @@ export const renderer = jsxRenderer(({ children }) => {
           ${children}
         </div>
         <!-- for calender -->
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="/js/flatpickr.js"></script>
         <script>
           flatpickr("#deadline", {
             enableTime: true,
