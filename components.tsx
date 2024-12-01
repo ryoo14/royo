@@ -46,7 +46,7 @@ export const Todos: FC = (props) => {
 export const AddTodo = () => (
   <form
     hx-post="/todos"
-    hx-target="#todo"
+    hx-target="#new-todo"
     hx-swap="beforebegin"
     _="on htmx:afterRequest reset() me"
     class="flex flex-row justify-around align-center w-full h-10 mb-10"

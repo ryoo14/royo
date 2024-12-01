@@ -30,7 +30,7 @@ app.get("/", (c) => {
             // 偶数行の背景色を灰色に
             return <TodoItem todo={todo} bgColor={index % 2 === 0 ? "bg-gray-100" : ""} />
           })}
-          <div id="todo" />
+          <div id="new-todo" />
         </div>
       </Todos>
     )
