@@ -73,7 +73,7 @@ app.post("/todos", async (c) => {
     const content = formData.get("content") as string
     const deadline = formData.get("deadline") as string
 
-    if (category == null || content == null || deadline == null) {
+    if (category === "" || content === "" || deadline === "") {
       return c.text("Bad Request", 400)
     }
 
@@ -83,6 +83,7 @@ app.post("/todos", async (c) => {
     const deadlineString = deadlineDate.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
     const todo = db.createTodo(category, content, deadlineString)
 
+    // change the background color of newly added todo to orange
     return c.html(<TodoItem todo={todo} bgColor="bg-orange-200" />)
   } catch (_e) {
     return c.text("Internal Server Error", 500)
