@@ -13,8 +13,8 @@ export const renderer = jsxRenderer(({ children }) => {
         <!-- for font -->
         <link href="/css/main.css" rel="stylesheet">
         <!-- for htmx -->
-        <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <script src="/js/htmx.js"></script>
+        <script src="/js/hyperscript.js"></script>
         <!-- for css -->
         <link href="/css/tailwind.css" rel="stylesheet">
       </head>
