@@ -16,7 +16,7 @@ export const renderer = jsxRenderer(({ children }) => {
         <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
         <!-- for css -->
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="/css/tailwind.css" rel="stylesheet">
       </head>
       <body>
         <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-36">
