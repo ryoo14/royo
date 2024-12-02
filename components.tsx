@@ -16,10 +16,11 @@ export const renderer = jsxRenderer(({ children }) => {
         <script src="/js/htmx.js"></script>
         <script src="/js/hyperscript.js"></script>
         <!-- for css -->
-        <link href="/css/tailwind.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- <link href="/css/tailwind.css" rel="stylesheet"> -->
       </head>
       <body>
-        <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-36">
+        <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-18">
           ${children}
         </div>
         <!-- for calender -->
@@ -37,7 +38,7 @@ export const renderer = jsxRenderer(({ children }) => {
 
 export const Todos: FC = (props) => {
   return (
-    <div class="flex flex-col justify-center w-11/12 lg:w-2/3">
+    <div class="flex flex-col w-11/12 lg:w-3/4">
       {props.children}
     </div>
   )
@@ -49,36 +50,25 @@ export const AddTodo = () => (
     hx-target="#new-todo"
     hx-swap="beforebegin"
     _="on htmx:afterRequest reset() me"
-    class="flex flex-row justify-around align-center w-full h-10 mb-10"
+    class="flex flex-row justify-around w-full h-10 mb-10"
   >
-    <input
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5 h-10"
-      name="category"
-      type="text"
-      placeholder="Category"
-      list="dataList"
-    />
+    <InputBox name="category" placeholder="Category" type="text" list="dataList" />
     <datalist id="dataList">
       <option value="work" />
       <option value="hobby" />
       <option value="family" />
     </datalist>
-    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" placeholder="Content" />
-    <input id="deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" placeholder="Deadline" />
-    <button
-      class="text-white bg-gray-600 hover:bg-gray-400 focus:ring-gray-400 border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm w-1/5 h-10"
-      type="submit"
-    >
-      Submit
-    </button>
+    <InputBox name="content" placeholder="Content" type="text"/>
+    <InputBox id="deadline" name="deadline" placeholder="Deadline" type="text"/>
+    <SubmitButton>Submit</SubmitButton>
   </form>
 )
 
 export const TodoHeader = () => (
   <div class="flex flex-row justify-around items-center flex-wrap w-full p-3 text-white bg-gray-600 rounded-t-xl">
     <div class="w-1/12">Id</div>
-    <div class="w-2/12 md:w-1/12 pr-2">Cate</div>
-    <div class="w-4/12 md:w-6/12 pr-2">Content</div>
+    <div class="w-2/12 md:w-2/12 pr-2">Category</div>
+    <div class="w-4/12 md:w-5/12 pr-2">Content</div>
     <div class="w-3/12 md:w-2/12 pr-2 flex flex-nowrap">
       <div class="mr-1">
         Deadline
@@ -115,3 +105,20 @@ export const TodoItem = ({ todo, bgColor }: { todo: Todo; bgColor: string }) => 
     </button>
   </div>
 )
+
+const InputBox: FC = (props) => {
+  return (
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" {...props} />
+  )
+}
+
+const SubmitButton: FC = ({children}) => {
+  return (
+    <button
+      class="text-white bg-gray-600 hover:bg-gray-400 focus:ring-gray-400 border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm w-1/5 h-10"
+      type="submit"
+    >
+      {children}
+    </button>
+  )
+}
