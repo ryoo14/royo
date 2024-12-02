@@ -1,6 +1,9 @@
+# Royo
+
+DenoとHonoとhtmx習作用のTodoアプリ
+
 ```
-npm install
-npm run dev
+deno run serve
 ```
 
 ```
