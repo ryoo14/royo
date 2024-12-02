@@ -588,12 +588,16 @@ video {
   }
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
+.mb-12 {
+  margin-bottom: 3rem;
 }
 
 .mr-1 {
   margin-right: 0.25rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
 }
 
 .flex {
@@ -723,10 +727,6 @@ video {
   padding-right: 0.5rem;
 }
 
-.pt-12 {
-  padding-top: 3rem;
-}
-
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -781,17 +781,17 @@ video {
     width: 16.666667%;
   }
 
-  .md\:w-6\/12 {
-    width: 50%;
+  .md\:w-5\/12 {
+    width: 41.666667%;
   }
 
-  .md\:pt-36 {
-    padding-top: 9rem;
+  .md\:w-6\/12 {
+    width: 50%;
   }
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-2\/3 {
-    width: 66.666667%;
+  .lg\:w-3\/4 {
+    width: 75%;
   }
 }

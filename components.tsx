@@ -16,11 +16,10 @@ export const renderer = jsxRenderer(({ children }) => {
         <script src="/js/htmx.js"></script>
         <script src="/js/hyperscript.js"></script>
         <!-- for css -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- <link href="/css/tailwind.css" rel="stylesheet"> -->
+        <link href="/css/tailwind.css" rel="stylesheet">
       </head>
       <body>
-        <div id="container" class="flex justify-center items-center w-full h-full pt-12 md:pt-18">
+        <div id="container" class="flex justify-center items-center w-full h-full mt-12 md:mt-18">
           ${children}
         </div>
         <!-- for calender -->
@@ -50,7 +49,7 @@ export const AddTodo = () => (
     hx-target="#new-todo"
     hx-swap="beforebegin"
     _="on htmx:afterRequest reset() me"
-    class="flex flex-row justify-around w-full h-10 mb-10"
+    class="flex flex-row justify-around w-full h-10 mb-12 md:mb-18"
   >
     <InputBox name="category" placeholder="Category" type="text" list="dataList" />
     <datalist id="dataList">
