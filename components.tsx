@@ -55,7 +55,7 @@ export const AddTodo = () => (
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5 h-10"
       name="category"
       type="text"
-      placeholder="category"
+      placeholder="Category"
       list="dataList"
     />
     <datalist id="dataList">
@@ -63,10 +63,10 @@ export const AddTodo = () => (
       <option value="hobby" />
       <option value="family" />
     </datalist>
-    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" placeholder="content" />
-    <input id="deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" placeholder="deadline" />
+    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="content" type="text" placeholder="Content" />
+    <input id="deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-1/5" name="deadline" type="text" placeholder="Deadline" />
     <button
-      class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-1/5 h-10"
+      class="text-white bg-gray-600 hover:bg-gray-400 focus:ring-gray-400 border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm w-1/5 h-10"
       type="submit"
     >
       Submit
@@ -75,7 +75,7 @@ export const AddTodo = () => (
 )
 
 export const TodoHeader = () => (
-  <div class="flex flex-row justify-around items-center flex-wrap w-full p-3">
+  <div class="flex flex-row justify-around items-center flex-wrap w-full p-3 text-white bg-gray-600 rounded-t-xl">
     <div class="w-1/12">Id</div>
     <div class="w-2/12 md:w-1/12 pr-2">Cate</div>
     <div class="w-4/12 md:w-6/12 pr-2">Content</div>
